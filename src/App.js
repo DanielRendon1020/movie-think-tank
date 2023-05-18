@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import DisplayIdeas from "./DisplayIdeas";
+import IdeasForm from "./IdeasForm";
 
 function App() {
+  const [ideas, setIdeas] = useState([
+    "Movie about a guy who gets bit by a radioactive mole rat",
+    "Romcom about two developers over Zoom",
+    "Horror film where AWS goes down for 24 hours",
+  ]);
+
+  const onAddIdea = (newIdea) => {
+    setIdeas([...ideas, newIdea]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main className="main">
+      <h1>Welcome, Super Awesome Movie Monster Think Tank!</h1>
+
+      <br />
+
+      <h1>Submit your ideas down below:</h1>
+      <DisplayIdeas ideas={ideas} />
+      <IdeasForm onAddIdea={onAddIdea} />
+    </main>
   );
 }
 
